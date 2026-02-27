@@ -1,0 +1,94 @@
+@import "tailwindcss";
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* 2. حذف کامل اسکرول‌بار برای تمام المان‌ها */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  -webkit-tap-highlight-color: transparent; /* حذف هاله آبی موقع کلیک در موبایل */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* 3. قفل کردن بدنه اصلی (جلوگیری از Bounce و زوم) */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* جلوگیری از اسکرول کل صفحه */
+  position: fixed; /* قفل کردن در iOS */
+  inset: 0;
+  touch-action: none; /* غیرفعال کردن رفتارهای لمسی پیش‌فرض در بدنه */
+  background-color: #000000; /* هماهنگ با لایه لایت */
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #000000;
+  }
+}
+
+button{
+  cursor: pointer;
+}
+
+/* 4. تنظیم نگهدارنده اصلی اپلیکیشن */
+#root {
+  width: 100%;
+  height: 100vh; /* استفاده از ارتفاع داینامیک برای موبایل */
+  overflow-y: auto; /* اسکرول فقط اینجا مجاز است */
+  overflow-x: hidden;
+  touch-action: pan-y; /* فقط اجازه اسکرول عمودی */
+  -webkit-overflow-scrolling: touch; /* اسکرول نرم و روان در iOS */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 5. تنظیمات ورودی‌ها برای جلوگیری از باگ‌های UI */
+input, textarea, select {
+  /* فونت 16 پیکسل برای جلوگیری از زوم خودکار iOS هنگام تمرکز */
+  font-size: 16px !important; 
+  -webkit-user-select: text; /* اجازه انتخاب متن در اینپوت‌ها */
+  user-select: text;
+}
+
+/* حذف فلش‌های اینپوت عدد */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* 6. استایل کمکی برای چسبندگی هدر (اگر استفاده می‌کنی) */
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* 7. بهینه‌سازی دکمه‌ها در موبایل */
+button:active {
+  transform: scale(0.96);
+  transition: transform 0.1s ease;
+}
