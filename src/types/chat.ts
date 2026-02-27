@@ -1,5 +1,3 @@
-// ─── Core Domain Types ────────────────────────────────────────────────────────
-
 export type MessageStatus =
   | "sending"
   | "sent"
